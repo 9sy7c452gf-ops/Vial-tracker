@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>VIAL — Peptide Tracker</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="VIAL">
+<meta name="theme-color" content="#16292B">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAA9zQYyAAAACXBIWXMAAAsTAAALEwEAmpwYAAAI8ElEQVR4nO2d229VRRSHz1+xFDURjZjg1FK5tOADl8itjQmEiIgxAYSYVm4qKhdr0GBRUyPVEAOCeEMBBYlY0xhAQ30gSkQKCF6wKipCuVR6wccxcx6MMc7pSdmbNWf29/B7adK9Z37rW6vr7NXZJyeDjUV4IJF4kNNeAMIDAWggoBAYKjQQmOg9oOUIIAjIADQQkAhChQYCidwDWo4AgoAMQAMBiSBUaCCQyD2g5QggCMgANBCQCEKFBgKJ3ANajgCCgAxAAwGJIFRoIJDIPaDlCCAIyAA0EJAIQoUGAoncA1qOAIKADEADAYkgVGggkMg9oOUIIAjIADQQkAhChQYCidwDWo4AgoAMQAMBiSBUaCCQyD2g5QggCMgANBCQCEKFBgKJ3ANajgCCgAxAAwGJIFRoIJDIPaDlCCAIyAA0EJAIQoUGAoncA1qOAIKADEADAYkgVGggkMg9oOUIIAjIADQQkAhChQYCidwDWo4AgoAMQAMBiSBUaCCQyD2g5QggCMgANBCQCEKFBgKJ3ANajj4Mura8wq56cY090NZmj/3wg/2u/Ud7+txZ29ndZc9f7LQ///5b/udJyF3LXdNd293D3cv93N3brcGtRRsYCVwA3YdB25ubbc9fl4KQW4s2MBK4ALqAOeOmTlOH+L9ya9KGRgIWQBcw5/6HHlYH+L9ya9KGRgIWQBcwhwpt1AEF6IQNooc26pBSoVN6ynH6/DlvK/D9T+39frrhftd3XXdPnnIYWo40sv+Nbdu84A29Y0K/r+t+13ddd0/tqiclJHpogLbaEAK0kllUaKMOLBUaoK02ZAAdgDFUaKPuNxUaoG3WxYdCKrTVhhCglcziQ6FRB5YKDdBWGzKADsAYKrRR95sKDdA26+JDIRXaakMI0Epm8aHQqANLhQZoqw0ZQAdgDBXaqPtNhQZom3XxoZAKbbUhBGgls/hQaNSBpUInZNSAslvtwSNHrviJFXdPd29tUKRERMtRpFELlq/wQtd9qdfeNKKq30Fwv+uu4bu+u7c2KFIiAugiTBo4dLj98eQvXuD2tLZediDcNXzXd/d2a9CGRUpAAF2ESQ1NTQVf/lI9897LDsTE6TMKVmm3Bm1YpAQE0H0YdOvosbbjwnkvaNt2fZhYMN77aJf3Puc6O+2QMePUgZHABdB9GLRpyxYvZJ1dF+2IiZMTC8aw8RPshYt/eu/32rtb1IGRwAXQBcwZPWWKvdjT4wWs6dVXEw/ISxs2eO/X1dvDyxoHA3S/4Wr59FMvXL93nLE3j7w9caAHVY60v53+w3vf3a371KugBCwqtMeY6XPnFfwguOyZhtSCsrxhdcF73zV3rjo4EqgA+n9McYOMrw77hyjufXTXDbkt1ffpHf3uW+/9D31z1F5TVq4OjwQogP4fUxau8A9RnGYtWJR6YGYvXFxwDQxbDEAXA9LAYSNs+68nvSB9/uUX9qpbyq5Itdm3f793He77WG4YXqleESUwUaEVhijFimGLAehSGaIUK4YthgpdCkOUYsWwxQB0qQxRihXDFlO0V/TQikOUYsWwxQB0qQxRihXDFkOFLoUhSrFi2GIAulSGKMWKYYvp06NM99AhDVGKFcMWA9ClMEQpVgxbDECXyhClWDFsMV5vclkeorQePWwXrF9ra56utzVPPfGPqleusBW182zZvNlBqqJ2bn6N/16z28OC9Wvze8ryyZZcVocob+7dbSsW19khi2qjUsXiuvzexk2dpu4zQF8hE7Z+3GwrlyxUhy8tVS5ZaN//pEUdLoC+QkOUzZ/tVYcubW3+bG8mT7bksjhEWdfSrA5c2lrX0pzJky25LA5R9hw6qA5c2tpz6GAmT7bksjhE6brUa2c2rlaHLi3NbFyd32MWT7bksjpE+aXjjJ3V1KgOX9Ka1dSY31tWXyOWy/oQ5ev2E7Z+/St24ITxJa2VG9bl95L114hlAugQT6IkLU62mGwAPbK6puBJlJc3blRfY1J6eeNG7z6dB1WTa9TXmLaiB3rT1q3+kyhnTttBVaPU15iUBlWNyu/Jt1/3l0p7jWkraqDdP8Wf6ugI+iRK0lr2TEPBo2TOE+01pqmogR5Vc6c3uMdPnIgyuNeWV+T35tu3a8G015imogZ62pz7vYFd9eIa9fWlpYaml7z7njprjvr60lTUQM9futwb2AeWPKq+vrRU+9jj3n3XPb5UfX1pKmqg76ub7w3sk889r76+tPRU4wvefd9bW6e+vjQVNdCVk6q9gT3Q1hbl9/8N6OMU+/AJk9TXmKaiBtoF103JfMF95fU3ovpvtGvKyu26N9/y7vds5wV7tYkviTMDtJM7G+gLsJOrZk+sfjb/ioAHly6zi+vrS0puzW7tbg8HC3zTrdOWnTvV4wHQl2nC5Bn3FPz+v6yo+1Jv/sS4NnAAnYAJ73ywQx0obW3esUMdNoBOyIQbR1TZw8ePq0OlpbZjx/IeaMMG0AmaUD5mbD6wWYS5fMxYddAAOgUTrr9tWP6f3Tu7u9RBS1t/9nTbtZtez5/U0YYMoFM2wb2zwvXVv/5xSh28pHXy1Cn79vbtvJcji3LPZCfdfU/+0dcjK1eqP4Lrr9za3Uh74vQZ0T9nlqw/h0YmUx4AdABBQAaggYBEECo0EEjkHtByBBAEZAAaCEgEoUIDgUTuAS1HAEFABqCBgEQQKjQQSOQe0HIEEARkABoISAShQgOBRO4BLUcAQUAGoIGARBAqNBBI5B7QcgQQBGQAGghIBKFCA4FE7gEtRwBBQAaggYBEECo0EEjkHtByBBAEZAAaCEgEoUIDgUTuAS1HAEFABqCBgEQQKjQQSOQe0HIEEARkABoISAShQgOBRO4BLUcAQUAGoIGARBAqNBBI5B7QcgQQBGQAGghIBKFCA4FE7gEtRwBBQAaggYBEECo0EEjkHtByBBAEZAAaCEgEoUIDgUTuAS1HAEFABqCBgEQQKjQQSOQe0HIEEARkABoISAShQgOBRO4BLUcAQUAGoIGARBAqNBBI5B7QcgQQBGQAGghIBKFCA4FE7gEtRwBBQCYxD/4GOtqfVrsZ+iUAAAAASUVORK5CYII=">
+<link rel="icon" href="data:image/png;base64,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">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    .vial-app {
+      min-height: 100vh;
+      background: #F4F7F6;
+      color: #16292B;
+      font-family: 'Inter', system-ui, sans-serif;
+      padding-bottom: 96px;
+    }
+    .mono { font-family: 'IBM Plex Mono', monospace; }
+    .muted { color: #4B6161; }
+    .faint { color: #94A8A5; }
+
+    .header {
+      padding: 24px 20px 16px;
+      position: sticky;
+      top: 0;
+      background: rgba(244,247,246,0.95);
+      backdrop-filter: blur(6px);
+      z-index: 10;
+      border-bottom: 1px solid #DCE6E4;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .header-logo {
+      width: 32px; height: 32px; border-radius: 8px;
+      background: #16292B; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .header-eyebrow { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: #4B6161; }
+    .header-title { font-size: 18px; font-weight: 600; margin-top: -2px; }
+
+    .main { padding: 16px 20px 20px; }
+
+    .save-error {
+      margin: 12px 20px 0; background: rgba(180,72,61,0.1); border: 1px solid rgba(180,72,61,0.3);
+      border-radius: 8px; padding: 8px 12px; font-size: 13px; color: #B4483D;
+    }
+
+    .card { background: #fff; border: 1px solid #DCE6E4; border-radius: 16px; padding: 16px; }
+    .card + .card { margin-top: 12px; }
+    .divider { border-top: 1px solid #EEF2F1; margin-top: 12px; padding-top: 12px; }
+
+    .stat-box { background: #F4F7F6; border-radius: 8px; padding: 8px 10px; }
+    .stat-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.05em; color: #94A8A5; }
+    .stat-value { font-size: 13px; color: #16292B; font-weight: 600; margin-top: 2px; }
+
+    .btn-primary {
+      width: 100%; background: #16292B; color: #fff; border: none; border-radius: 8px;
+      padding: 11px 16px; font-size: 14px; font-weight: 500; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
+    .btn-outline {
+      border: 1px solid #DCE6E4; background: #fff; color: #16292B; border-radius: 8px;
+      padding: 8px 12px; font-size: 13px; font-weight: 500; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+    }
+    .btn-outline.danger { color: #B4483D; }
+    .btn-outline.full { width: 100%; }
+    .btn-accent {
+      background: #2F6E68; color: #fff; border: none; border-radius: 8px;
+      padding: 7px 14px; font-size: 13px; font-weight: 500; cursor: pointer;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .btn-danger {
+      background: #B4483D; color: #fff; border: none; border-radius: 8px;
+      padding: 10px 16px; font-size: 14px; font-weight: 500; cursor: pointer;
+    }
+    .btn-toggle {
+      flex: 1; border-radius: 8px; padding: 8px; font-size: 13px; font-weight: 500;
+      border: 1px solid #DCE6E4; background: #fff; color: #16292B; cursor: pointer;
+    }
+    .btn-toggle.active { background: #16292B; color: #fff; border-color: #16292B; }
+    .icon-btn {
+      border: none; background: transparent; padding: 6px; border-radius: 999px; color: #4B6161; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .icon-btn:hover { background: #DCE6E4; }
+
+    .pill {
+      border-radius: 999px; padding: 7px 14px; font-size: 13px; font-weight: 500;
+      border: 1px solid #DCE6E4; background: #fff; color: #4B6161; cursor: pointer; white-space: nowrap;
+    }
+    .pill.active { background: #16292B; color: #fff; border-color: #16292B; }
+
+    .field { display: block; margin-bottom: 12px; }
+    .field-label { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: #4B6161; margin-bottom: 4px; font-family: 'IBM Plex Mono', monospace; }
+    .field-input {
+      width: 100%; border-radius: 8px; border: 1px solid #DCE6E4; background: #fff;
+      padding: 9px 12px; font-size: 15px; color: #16292B; font-family: 'Inter', sans-serif;
+    }
+    .field-input:focus { outline: none; box-shadow: 0 0 0 2px #2F6E68; border-color: transparent; }
+    .field-unit-select { border-radius: 8px; border: 1px solid #DCE6E4; background: #fff; padding: 0 10px; font-size: 14px; color: #16292B; }
+
+    .banner-warn { background: rgba(201,138,44,0.1); border: 1px solid rgba(201,138,44,0.3); border-radius: 12px; padding: 12px 16px; margin-bottom: 16px; }
+    .banner-warn-title { display: flex; align-items: center; gap: 8px; color: #C98A2C; font-weight: 500; font-size: 13px; margin-bottom: 4px; }
+    .banner-warn-item { font-size: 13px; color: #8a621e; }
+
+    .banner-info { background: rgba(47,110,104,0.1); border-radius: 8px; padding: 10px 12px; font-size: 13px; color: #2F6E68; margin-bottom: 12px; }
+    .banner-titrate { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #5B7FBD; margin-top: 8px; }
+    .banner-titrate-box { background: rgba(91,127,189,0.1); border-radius: 8px; padding: 6px 10px; margin-bottom: 12px; }
+
+    .status-pill { font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; padding: 4px 8px; border-radius: 999px; white-space: nowrap; }
+
+    .empty-state { text-align: center; padding-top: 64px; }
+
+    .nav-bar {
+      position: fixed; bottom: 0; left: 0; right: 0; background: #fff; border-top: 1px solid #DCE6E4;
+      display: flex; justify-content: space-around; padding: 8px 8px; z-index: 20;
+    }
+    .nav-item {
+      display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 6px 16px;
+      border-radius: 8px; background: none; border: none; cursor: pointer; color: #94A8A5; font-size: 11px; font-weight: 500;
+    }
+    .nav-item.active { color: #2F6E68; }
+
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 50; display: flex; align-items: flex-end; justify-content: center;
+      background: rgba(0,0,0,0.45);
+    }
+    @media (min-width: 640px) { .modal-overlay { align-items: center; } }
+    .modal-panel {
+      background: #F4F7F6; width: 100%; max-width: 480px; max-height: 88vh; overflow-y: auto;
+      border-radius: 20px 20px 0 0; box-shadow: 0 -10px 40px rgba(0,0,0,0.2);
+    }
+    @media (min-width: 640px) { .modal-panel { border-radius: 20px; } }
+    .modal-header {
+      display: flex; align-items: center; justify-content: space-between; padding: 16px 20px;
+      border-bottom: 1px solid #DCE6E4; position: sticky; top: 0; background: #F4F7F6; z-index: 1;
+    }
+    .modal-title { font-family: 'IBM Plex Mono', monospace; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; }
+    .modal-body { padding: 16px 20px 24px; }
+
+    .row { display: flex; align-items: center; }
+    .row-between { display: flex; align-items: center; justify-content: space-between; }
+    .row-gap-2 { display: flex; align-items: center; gap: 8px; }
+    .row-gap-3 { display: flex; align-items: center; gap: 12px; }
+    .col-gap-3 > * + * { margin-top: 12px; }
+    .col-gap-5 > * + * { margin-top: 20px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .flex-1 { flex: 1; }
+    .flex-wrap { flex-wrap: wrap; }
+    .w-full { width: 100%; }
+    .text-center { text-align: center; }
+    .dot { width: 8px; height: 8px; border-radius: 999px; display: inline-block; }
+
+    .stock-badge {
+      display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600;
+      padding: 4px 10px; border-radius: 999px;
+    }
+
+    .chart-card { background: #fff; border: 1px solid #DCE6E4; border-radius: 16px; padding: 16px 8px 8px; margin-bottom: 12px; }
+    .chart-legend { display: flex; flex-wrap: wrap; gap: 12px; padding: 0 8px 4px; }
+    .chart-legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: #4B6161; }
+
+    .rating-row { display: flex; gap: 6px; }
+    .rating-btn {
+      flex: 1; border: 1px solid #DCE6E4; background: #fff; border-radius: 8px; padding: 8px 0;
+      font-size: 14px; font-weight: 600; color: #94A8A5; cursor: pointer;
+    }
+    .rating-btn.active { background: #16292B; color: #fff; border-color: #16292B; }
+
+    .metric-card { background: #fff; border: 1px solid #DCE6E4; border-radius: 14px; padding: 14px; text-align: center; }
+    .metric-value { font-size: 20px; font-weight: 700; font-family: 'IBM Plex Mono', monospace; }
+    .metric-label { font-size: 11px; color: #94A8A5; text-transform: uppercase; letter-spacing: 0.04em; margin-top: 2px; }
+    .metric-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 16px; }
+</style>
+</head>
+<body>
+<div id="app" class="vial-app"></div>
+<div id="modal-root"></div>
+
+<script>
+var SITES = ["Abdomen (L)","Abdomen (R)","Thigh (L)","Thigh (R)","Upper Arm (L)","Upper Arm (R)","Glute (L)","Glute (R)"];
+var FREQUENCIES = [
+  { label: "Three times daily", hours: 8 },
+  { label: "Twice daily", hours: 12 },
+  { label: "Once daily", hours: 24 },
+  { label: "Every other day", hours: 48 },
+  { label: "Once every 3 days", hours: 72 },
+  { label: "Twice weekly", hours: 84 },
+  { label: "Once weekly", hours: 168 },
+  { label: "Once every 2 weeks", hours: 336 }
+];
+var WEEKDAY_LABELS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+var PALETTE = ["#C0554B", "#4C6FB0", "#B8842E", "#8B5FA8", "#B0507E"];
+var STORAGE_KEY = "vial-tracker-data-v1";
+
+function uid() { return Math.random().toString(36).slice(2, 10) + Date.now().toString(36); }
+
+function mgToUnits(doseMg, vialMg, bacMl) {
+  if (!vialMg || !bacMl) return 0;
+  var c = vialMg / bacMl;
+  return c ? (doseMg / c) * 100 : 0;
+}
+function mlPerDose(doseMg, vialMg, bacMl) {
+  if (!vialMg || !bacMl) return 0;
+  var c = vialMg / bacMl;
+  return c ? doseMg / c : 0;
+}
+function getCurrentDoseEntry(p, now) {
+  var past = p.doseHistory.filter(function (d) { return d.effectiveAt <= now; });
+  return past.length ? past[past.length - 1] : p.doseHistory[0];
+}
+function getUpcomingDoseEntry(p, now) {
+  var future = p.doseHistory.filter(function (d) { return d.effectiveAt > now; });
+  return future.length ? future[0] : null;
+}
+function nextWeekdayDueAt(p, now) {
+  var days = (p.weekdays && p.weekdays.length) ? p.weekdays : [1, 3, 5];
+  var start;
+  if (p.lastDoseAt) {
+    var lastDay = new Date(p.lastDoseAt);
+    lastDay.setHours(0, 0, 0, 0);
+    start = new Date(lastDay);
+    start.setDate(start.getDate() + 1);
+  } else {
+    start = new Date(now);
+    start.setHours(0, 0, 0, 0);
+  }
+  for (var i = 0; i <= 7; i++) {
+    var d = new Date(start);
+    d.setDate(d.getDate() + i);
+    if (days.indexOf(d.getDay()) !== -1) return d.getTime();
+  }
+  return null;
+}
+function derivePeptide(p, now) {
+  var current = getCurrentDoseEntry(p, now);
+  var upcoming = getUpcomingDoseEntry(p, now);
+  var units = mgToUnits(current.doseMg, p.vialMg, p.bacMl);
+  var doseMl = mlPerDose(current.doseMg, p.vialMg, p.bacMl);
+  var dosesRemaining = doseMl > 0 ? Math.max(0, Math.floor((p.remainingMl || 0) / doseMl)) : 0;
+  var fillPct = p.totalVolumeMl > 0 ? Math.max(0, Math.min(1, (p.remainingMl || 0) / p.totalVolumeMl)) : 0;
+  var scheduleType = p.scheduleType || 'interval';
+  var nextDueAt;
+  if (scheduleType === 'weekdays') {
+    nextDueAt = nextWeekdayDueAt(p, now);
+  } else {
+    nextDueAt = p.lastDoseAt ? p.lastDoseAt + p.intervalHours * 3600 * 1000 : null;
+  }
+  return Object.assign({}, p, { currentDoseMg: current.doseMg, units: units, doseMl: doseMl, dosesRemaining: dosesRemaining, fillPct: fillPct, nextDueAt: nextDueAt, upcomingDose: upcoming });
+}
+
+function fmtMg(mg) {
+  if (mg < 1) return Math.round(mg * 1000) + 'mcg';
+  return parseFloat(mg.toFixed(3)) + 'mg';
+}
+function fmtDate(ts) { return new Date(ts).toLocaleDateString(undefined, { month: 'short', day: 'numeric' }); }
+function fmtTime(ts) {
+  if (!ts) return '—';
+  return new Date(ts).toLocaleString(undefined, { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
+}
+function fmtDuration(ms) {
+  var abs = Math.abs(ms);
+  var h = Math.floor(abs / 3600000);
+  var m = Math.floor((abs % 3600000) / 60000);
+  if (h === 0) return m + 'm';
+  if (m === 0) return h + 'h';
+  return h + 'h ' + m + 'm';
+}
+function dueStatus(p, now) {
+  var scheduleType = p.scheduleType || 'interval';
+  if (scheduleType === 'weekdays') {
+    if (p.nextDueAt === null) return { label: 'Not started', tone: 'neutral' };
+    var today = new Date(now); today.setHours(0, 0, 0, 0);
+    var diffDays = Math.round((p.nextDueAt - today.getTime()) / (24 * 3600 * 1000));
+    if (diffDays < 0) return { label: 'Overdue since ' + WEEKDAY_LABELS[new Date(p.nextDueAt).getDay()], tone: 'danger' };
+    if (diffDays === 0) return { label: 'Due today', tone: 'warn' };
+    if (diffDays === 1) return { label: 'Due tomorrow', tone: 'ok' };
+    return { label: 'Due ' + WEEKDAY_LABELS[new Date(p.nextDueAt).getDay()], tone: 'ok' };
+  }
+  if (!p.lastDoseAt) return { label: 'Not started', tone: 'neutral' };
+  var diff = p.nextDueAt - now;
+  if (diff <= 0) return { label: 'Overdue ' + fmtDuration(diff), tone: 'danger' };
+  if (diff < 2 * 3600 * 1000) return { label: 'Due in ' + fmtDuration(diff), tone: 'warn' };
+  return { label: 'Due ' + fmtTime(p.nextDueAt), tone: 'ok' };
+}
+function nextSite(lastSite) {
+  var idx = SITES.indexOf(lastSite);
+  if (idx === -1) return SITES[0];
+  return SITES[(idx + 1) % SITES.length];
+}
+function interpolateWeightAt(series, ts) {
+  if (!series.length) return null;
+  if (series.length === 1) return series[0].weight;
+  if (ts <= series[0].timestamp) return series[0].weight;
+  var last = series[series.length - 1];
+  if (ts >= last.timestamp) return last.weight;
+  for (var i = 0; i < series.length - 1; i++) {
+    var a = series[i], b = series[i + 1];
+    if (ts >= a.timestamp && ts <= b.timestamp) {
+      var frac = b.timestamp === a.timestamp ? 0 : (ts - a.timestamp) / (b.timestamp - a.timestamp);
+      return a.weight + frac * (b.weight - a.weight);
+    }
+  }
+  return last.weight;
+}
+function toneColor(tone) {
+  if (tone === 'danger') return '#B4483D';
+  if (tone === 'warn') return '#C98A2C';
+  if (tone === 'ok') return '#2F6E68';
+  return '#94A8A5';
+}
+function stockToneColor(n) {
+  if (n <= 3) return '#B4483D';
+  if (n <= 7) return '#C98A2C';
+  return '#3E8F5F';
+}
+function fmtDatetimeLocal(d) {
+  function pad(n) { return String(n).padStart(2, '0'); }
+  return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()) + 'T' + pad(d.getHours()) + ':' + pad(d.getMinutes());
+}
+function esc(s) {
+  if (s === null || s === undefined) return '';
+  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+var ICONS = {
+  plus: '<line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>',
+  x: '<line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>',
+  check: '<polyline points="20 6 9 17 4 12"></polyline>',
+  trash: '<polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>',
+  edit: '<path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>',
+  syringe: '<path d="M18 2l4 4"></path><path d="M17 7l-11 11"></path><path d="M14 4l6 6"></path><path d="M4 20l3-1 8-8-2-2-8 8-1 3z"></path>',
+  flask: '<path d="M9 2v6l-5 9a2 2 0 0 0 2 3h12a2 2 0 0 0 2-3l-5-9V2"></path><line x1="8" y1="2" x2="16" y2="2"></line>',
+  trend: '<polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline>',
+  pin: '<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle>',
+  warn: '<path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line>',
+  home: '<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline>',
+  activity: '<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>',
+  history: '<path d="M3 3v5h5"></path><path d="M3.05 13A9 9 0 1 0 6 5.3L3 8"></path><polyline points="12 7 12 12 16 14"></polyline>',
+  ruler: '<path d="M21.3 8.7L15.3 2.7a1 1 0 0 0-1.4 0L2.7 13.9a1 1 0 0 0 0 1.4l6 6a1 1 0 0 0 1.4 0L21.3 10.1a1 1 0 0 0 0-1.4z"></path><path d="M7.5 10.5l2 2"></path><path d="M10.5 7.5l2 2"></path><path d="M13.5 4.5l2 2"></path>',
+  download: '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line>',
+  upload: '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line>'
+};
+function icon(name, size) {
+  size = size || 16;
+  return '<svg width="' + size + '" height="' + size + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px">' + (ICONS[name] || '') + '</svg>';
+}
+
+function vialGaugeSVG(pct, color, size) {
+  size = size || 44;
+  var h = size, w = size * 0.62;
+  var liquidH = h * 0.72 * pct;
+  var s = '<svg width="' + w + '" height="' + h + '" viewBox="0 0 ' + w + ' ' + h + '" style="flex-shrink:0">';
+  s += '<rect x="' + (w * 0.12) + '" y="' + (h * 0.06) + '" width="' + (w * 0.76) + '" height="' + (h * 0.16) + '" rx="2" fill="#DCE6E4" stroke="#B7C7C4" stroke-width="1"></rect>';
+  s += '<rect x="' + (w * 0.08) + '" y="' + (h * 0.22) + '" width="' + (w * 0.84) + '" height="' + (h * 0.74) + '" rx="4" fill="#F4F7F6" stroke="#B7C7C4" stroke-width="1.5"></rect>';
+  s += '<rect x="' + (w * 0.08 + 1.5) + '" y="' + (h * 0.22 + (h * 0.74 - liquidH) + 1) + '" width="' + (w * 0.84 - 3) + '" height="' + Math.max(0, liquidH - 2) + '" rx="3" fill="' + color + '" opacity="0.85"></rect>';
+  [0.35, 0.55, 0.75].forEach(function (f) {
+    s += '<line x1="' + (w * 0.08) + '" x2="' + (w * 0.2) + '" y1="' + (h * 0.22 + h * 0.74 * f) + '" y2="' + (h * 0.22 + h * 0.74 * f) + '" stroke="#94A8A5" stroke-width="1"></line>';
+  });
+  s += '</svg>';
+  return s;
+}
+
+var STATE = { peptides: [], logs: [], wellness: [], tab: 'dashboard', modal: null, saveError: false, historyFilter: 'all' };
+
+function loadState() {
+  try {
+    var raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) {
+      var d = JSON.parse(raw);
+      STATE.peptides = d.peptides || [];
+      STATE.logs = d.logs || [];
+      STATE.wellness = d.wellness || [];
+    }
+  } catch (e) {}
+}
+function saveState() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ peptides: STATE.peptides, logs: STATE.logs, wellness: STATE.wellness }));
+    STATE.saveError = false;
+  } catch (e) { STATE.saveError = true; }
+}
+
+function getDerivedPeptides() { var now = Date.now(); return STATE.peptides.map(function (p) { return derivePeptide(p, now); }); }
+function getWeightSeries() {
+  return STATE.wellness.filter(function (w) { return w.weightLb; })
+    .map(function (w) { return { timestamp: w.timestamp, weight: Number(w.weightLb) }; })
+    .sort(function (a, b) { return a.timestamp - b.timestamp; });
+}
+
+function buildWeightChartHTML(weightSeries, logs, peptides, opts) {
+  opts = opts || {};
+  var height = opts.height || 180;
+  if (weightSeries.length < 2) {
+    return '<div class="card text-center muted" style="font-size:13px;margin-bottom:12px;">' + (opts.emptyMessage || 'Log a couple of weight check-ins to see your trend line here.') + '</div>';
+  }
+  var W = 320, H = height, padX = 8, padY = 10;
+  var ts = weightSeries.map(function (p) { return p.timestamp; });
+  var minT = Math.min.apply(null, ts), maxT = Math.max.apply(null, ts);
+  var ws = weightSeries.map(function (p) { return p.weight; });
+  var minW = Math.min.apply(null, ws) - 2, maxW = Math.max.apply(null, ws) + 2;
+  function X(t) { return padX + (maxT === minT ? 0 : (t - minT) / (maxT - minT)) * (W - 2 * padX); }
+  function Y(w) { return H - padY - ((w - minW) / (maxW - minW)) * (H - 2 * padY); }
+  var points = weightSeries.map(function (p) { return X(p.timestamp) + ',' + Y(p.weight); }).join(' ');
+  var dots = logs.slice().sort(function (a, b) { return a.timestamp - b.timestamp; }).map(function (l) {
+    var y = interpolateWeightAt(weightSeries, l.timestamp);
+    if (y === null) return '';
+    var doseLabel = l.doseMg ? fmtMg(l.doseMg) : (parseFloat(l.units.toFixed(1)) + 'u');
+    return '<circle cx="' + X(l.timestamp) + '" cy="' + Y(y) + '" r="5" fill="' + l.color + '" stroke="#fff" stroke-width="2"><title>' + esc(l.peptideName) + ' ' + esc(doseLabel) + ' on ' + esc(fmtDate(l.timestamp)) + '</title></circle>';
+  }).join('');
+  var legend = peptides.length ? '<div class="chart-legend">' + peptides.map(function (p) {
+    return '<div class="chart-legend-item"><span class="dot" style="background:' + p.color + ';width:8px;height:8px;"></span>' + esc(p.name) + ' injection</div>';
+  }).join('') + '</div>' : '';
+  return '<div class="chart-card"><svg viewBox="0 0 ' + W + ' ' + H + '" width="100%" height="' + H + '" preserveAspectRatio="none"><line x1="' + padX + '" y1="' + (H - padY) + '" x2="' + (W - padX) + '" y2="' + (H - padY) + '" stroke="#EEF2F1"></line><polyline points="' + points + '" fill="none" stroke="#2F6E68" stroke-width="2"></polyline>' + dots + '</svg>' + legend + '</div>';
+}
+
+function field(label, innerHtml) { return '<label class="field"><span class="field-label">' + label + '</span>' + innerHtml + '</label>'; }
+function statBox(label, value) { return '<div class="stat-box mono"><p class="stat-label">' + label + '</p><p class="stat-value">' + value + '</p></div>'; }
+function modalWrap(title, bodyHtml) {
+  return '<div class="modal-overlay" id="modal-overlay"><div class="modal-panel"><div class="modal-header"><h2 class="modal-title">' + title + '</h2><button class="icon-btn" id="modal-close">' + icon('x', 18) + '</button></div><div class="modal-body">' + bodyHtml + '</div></div></div>';
+}
+
+function renderHeader() {
+  return '<header class="header">'
+    + '<div class="header-logo">' + icon('flask', 16) + '</div>'
+    + '<div style="flex:1"><p class="header-eyebrow">Peptide Tracker</p><h1 class="mono header-title">VIAL</h1></div>'
+    + '<button class="icon-btn" id="btn-export" title="Download backup">' + icon('download', 18) + '</button>'
+    + '<button class="icon-btn" id="btn-import" title="Restore backup">' + icon('upload', 18) + '</button>'
+    + '<input type="file" id="import-file" accept="application/json" style="display:none">'
+    + '</header>';
+}
+function renderNav() {
+  var tabs = [
+    { id: 'dashboard', label: 'Dashboard', icon: 'home' },
+    { id: 'peptides', label: 'Peptides', icon: 'flask' },
+    { id: 'wellness', label: 'Wellness', icon: 'activity' },
+    { id: 'history', label: 'History', icon: 'history' }
+  ];
+  return '<nav class="nav-bar">' + tabs.map(function (t) {
+    return '<button class="nav-item ' + (STATE.tab === t.id ? 'active' : '') + '" data-tab="' + t.id + '">' + icon(t.icon, 20) + '<span>' + t.label + '</span></button>';
+  }).join('') + '</nav>';
+}
+
+function renderDashboard(derived, weightSeries) {
+  if (derived.length === 0) {
+    return '<div class="empty-state">' + icon('flask', 36) + '<p class="muted" style="margin:12px 0 16px;font-size:15px;">No peptides yet. Add one to start tracking doses and supply.</p>'
+      + '<button id="btn-add-peptide-empty" class="btn-primary" style="width:auto;display:inline-flex;padding:10px 18px;">' + icon('plus', 16) + ' Add your first peptide</button></div>';
+  }
+  var now = Date.now();
+  var cutoff = now - 60 * 24 * 3600 * 1000;
+  var recentWeight = weightSeries.filter(function (w) { return w.timestamp >= cutoff; });
+  var recentLogs = STATE.logs.filter(function (l) { return l.timestamp >= cutoff; });
+  var lowStock = derived.filter(function (p) { return p.dosesRemaining <= 3 && p.totalVolumeMl > 0; });
+
+  var html = '<button id="btn-checkin" class="btn-primary" style="margin-bottom:16px;padding:14px 16px;font-size:15px;">' + icon('plus', 18) + ' Check-in</button>';
+
+  if (lowStock.length) {
+    html += '<div class="banner-warn"><div class="banner-warn-title">' + icon('warn', 15) + ' Reorder soon</div>'
+      + lowStock.map(function (p) { return '<p class="banner-warn-item">' + esc(p.name) + ' — ' + p.dosesRemaining + ' dose' + (p.dosesRemaining === 1 ? '' : 's') + ' left</p>'; }).join('')
+      + '</div>';
+  }
+
+  html += '<p class="mono muted" style="font-size:11px;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px;">Weight · last 60 days</p>';
+  html += buildWeightChartHTML(recentWeight, recentLogs, derived, { height: 160, emptyMessage: 'Check in with your weight a couple of times to see a trend here.' });
+
+  html += '<p class="mono muted" style="font-size:11px;text-transform:uppercase;letter-spacing:0.05em;margin-top:4px;margin-bottom:8px;">Peptides</p>';
+  html += derived.map(function (p) {
+    var status = dueStatus(p, now);
+    var tc = toneColor(status.tone);
+    var sc = stockToneColor(p.dosesRemaining);
+    return '<div class="card">'
+      + '<div class="row-between" style="align-items:flex-start;">'
+      + '<div class="row-gap-3">' + vialGaugeSVG(p.fillPct, p.color, 44) + '<div><p style="font-weight:600;font-size:15px;">' + esc(p.name) + '</p>'
+      + '<p class="mono" style="font-size:13px;margin-top:2px;">' + fmtMg(p.currentDoseMg) + ' <span class="muted">&rarr;</span> <strong>' + parseFloat(p.units.toFixed(1)) + ' units</strong></p></div></div>'
+      + '<span class="status-pill" style="color:' + tc + ';background:' + tc + '1A;">' + status.label + '</span>'
+      + '</div>'
+      + (p.upcomingDose ? '<div class="banner-titrate">' + icon('trend', 13) + ' Dose increases to ' + fmtMg(p.upcomingDose.doseMg) + ' on ' + fmtDate(p.upcomingDose.effectiveAt) + '</div>' : '')
+      + '<div class="row-between divider">'
+      + '<div class="row-gap-2"><span class="stock-badge" style="color:' + sc + ';background:' + sc + '1A;"><span class="dot" style="background:' + sc + ';width:6px;height:6px;"></span>' + p.dosesRemaining + ' dose' + (p.dosesRemaining === 1 ? '' : 's') + ' left</span>'
+      + (p.lastSite ? '<span class="muted" style="font-size:12px;">next site: ' + esc(nextSite(p.lastSite)) + '</span>' : '') + '</div>'
+      + '<button class="btn-accent btn-log-dose" data-id="' + p.id + '">' + icon('syringe', 14) + ' Log dose</button>'
+      + '</div></div>';
+  }).join('');
+
+  return html;
+}
+
+function renderPeptides(derived) {
+  var html = '<div class="row-between" style="margin-bottom:12px;"><h2 class="mono muted" style="font-size:13px;text-transform:uppercase;letter-spacing:0.05em;">Your Peptides</h2>'
+    + '<button id="btn-add-peptide" style="background:none;border:none;color:#2F6E68;font-size:13px;font-weight:500;display:flex;align-items:center;gap:4px;cursor:pointer;">' + icon('plus', 15) + ' Add</button></div>';
+  if (derived.length === 0) {
+    html += '<p class="muted text-center" style="padding-top:32px;font-size:14px;">No peptides added yet.</p>';
+    return html;
+  }
+  html += derived.map(function (p) {
+    var sc = stockToneColor(p.dosesRemaining);
+    return '<div class="card">'
+      + '<div class="row-gap-3" style="margin-bottom:12px;">' + vialGaugeSVG(p.fillPct, p.color, 52)
+      + '<div class="flex-1"><p style="font-weight:600;font-size:15px;">' + esc(p.name) + '</p>'
+      + '<p class="muted" style="font-size:12px;">' + p.remainingMl.toFixed(2) + ' mL / ' + p.totalVolumeMl + ' mL remaining</p></div></div>'
+      + '<div class="grid-2" style="margin-bottom:8px;">'
+      + statBox('Vial', p.vialMg + 'mg / ' + p.bacMl + 'mL')
+      + statBox('Current dose', fmtMg(p.currentDoseMg))
+      + statBox('Units to draw', parseFloat(p.units.toFixed(1)) + 'u')
+      + '<div class="stat-box"><p class="stat-label">Doses left</p><div style="margin-top:2px;"><span class="stock-badge" style="color:' + sc + ';background:' + sc + '1A;"><span class="dot" style="background:' + sc + ';width:6px;height:6px;"></span>' + p.dosesRemaining + ' dose' + (p.dosesRemaining === 1 ? '' : 's') + ' left</span></div></div>'
+      + '</div>'
+      + (p.upcomingDose ? '<div class="banner-titrate-box banner-titrate" style="margin-top:0;">' + icon('trend', 13) + ' Increasing to ' + fmtMg(p.upcomingDose.doseMg) + ' on ' + fmtDate(p.upcomingDose.effectiveAt) + '</div>' : '')
+      + '<div class="row-gap-2 flex-wrap">'
+      + '<button class="btn-outline flex-1 btn-titrate" data-id="' + p.id + '">' + icon('trend', 14) + ' Titrate</button>'
+      + '<button class="btn-outline flex-1 btn-reconstitute" data-id="' + p.id + '">' + icon('flask', 14) + ' New vial</button>'
+      + '<button class="btn-outline btn-edit-peptide" data-id="' + p.id + '">' + icon('edit', 14) + '</button>'
+      + '<button class="btn-outline danger btn-delete-peptide" data-id="' + p.id + '">' + icon('trash', 14) + '</button>'
+      + '</div></div>';
+  }).join('');
+  return html;
+}
+
+function renderWellness(weightSeries) {
+  var html = '<div class="row-between" style="margin-bottom:12px;"><h2 class="mono muted" style="font-size:13px;text-transform:uppercase;letter-spacing:0.05em;">Wellness</h2>'
+    + '<button id="btn-checkin-wellness" style="background:none;border:none;color:#2F6E68;font-size:13px;font-weight:500;display:flex;align-items:center;gap:4px;cursor:pointer;">' + icon('plus', 15) + ' Check-in</button></div>';
+
+  var sorted = STATE.wellness.slice().sort(function (a, b) { return b.timestamp - a.timestamp; });
+  if (sorted.length) {
+    var latestWeight = sorted.find(function (w) { return w.weightLb; });
+    var idx = latestWeight ? sorted.indexOf(latestWeight) : -1;
+    var priorWeight = idx >= 0 ? sorted.slice(idx + 1).find(function (w) { return w.weightLb; }) : null;
+    var weightDelta = latestWeight && priorWeight ? (Number(latestWeight.weightLb) - Number(priorWeight.weightLb)).toFixed(1) : null;
+    var latestWaistEntry = sorted.find(function (w) { return w.waist; });
+    html += '<div class="metric-grid">'
+      + '<div class="metric-card"><p class="metric-value">' + (latestWeight ? latestWeight.weightLb : '—') + '</p><p class="metric-label">Weight (lb)' + (weightDelta !== null ? ' &middot; ' + (weightDelta > 0 ? '+' : '') + weightDelta : '') + '</p></div>'
+      + '<div class="metric-card"><p class="metric-value">' + (latestWaistEntry ? latestWaistEntry.waist : '—') + '</p><p class="metric-label">Waist (in)</p></div>'
+      + '<div class="metric-card"><p class="metric-value">' + sorted.length + '</p><p class="metric-label">Check-ins</p></div>'
+      + '</div>';
+  }
+
+  html += buildWeightChartHTML(weightSeries, STATE.logs, getDerivedPeptides(), {});
+
+  if (sorted.length === 0) {
+    html += '<p class="muted text-center" style="padding-top:16px;font-size:14px;">No check-ins yet. Most people log weight on injection day.</p>';
+  } else {
+    html += '<div class="col-gap-3">' + sorted.map(function (w) {
+      var parts = [];
+      if (w.weightLb) parts.push('<span><strong>' + w.weightLb + '</strong> lb</span>');
+      if (w.waist) parts.push('<span class="muted">Waist ' + w.waist + '&quot;</span>');
+      if (w.hips) parts.push('<span class="muted">Hips ' + w.hips + '&quot;</span>');
+      if (w.chest) parts.push('<span class="muted">Chest ' + w.chest + '&quot;</span>');
+      if (w.thigh) parts.push('<span class="muted">Thigh ' + w.thigh + '&quot;</span>');
+      if (w.arm) parts.push('<span class="muted">Arm ' + w.arm + '&quot;</span>');
+      if (w.sleep) parts.push('<span class="muted">Sleep ' + w.sleep + '/5</span>');
+      if (w.energy) parts.push('<span class="muted">Energy ' + w.energy + '/5</span>');
+      if (w.hunger) parts.push('<span class="muted">Hunger ' + w.hunger + '/5</span>');
+      return '<div class="card" style="padding:12px;"><div class="row-between"><p class="mono muted" style="font-size:12px;">' + fmtDate(w.timestamp) + '</p>'
+        + '<button class="icon-btn btn-delete-wellness" data-id="' + w.id + '">' + icon('trash', 14) + '</button></div>'
+        + '<div class="row-gap-3 flex-wrap" style="margin-top:6px;font-size:13px;">' + parts.join('') + '</div>'
+        + (w.note ? '<p class="muted" style="font-size:13px;margin-top:6px;">' + esc(w.note) + '</p>' : '')
+        + '</div>';
+    }).join('') + '</div>';
+  }
+  return html;
+}
+
+function renderHistory() {
+  var filter = STATE.historyFilter || 'all';
+  var filtered = filter === 'all' ? STATE.logs : STATE.logs.filter(function (l) { return l.peptideId === filter; });
+  var byDate = {};
+  filtered.forEach(function (l) {
+    var d = new Date(l.timestamp).toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' });
+    (byDate[d] = byDate[d] || []).push(l);
+  });
+  var html = '<div class="row-gap-2" style="margin-bottom:16px;overflow-x:auto;padding-bottom:4px;">'
+    + '<button class="pill btn-filter ' + (filter === 'all' ? 'active' : '') + '" data-filter="all">All</button>'
+    + STATE.peptides.map(function (p) { return '<button class="pill btn-filter ' + (filter === p.id ? 'active' : '') + '" data-filter="' + p.id + '">' + esc(p.name) + '</button>'; }).join('')
+    + '</div>';
+  var dates = Object.keys(byDate);
+  if (dates.length === 0) { html += '<p class="muted text-center" style="padding-top:32px;font-size:14px;">No doses logged yet.</p>'; return html; }
+  html += '<div class="col-gap-5">' + dates.map(function (date) {
+    return '<div><p class="mono faint" style="font-size:11px;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px;">' + date + '</p>'
+      + '<div class="col-gap-3">' + byDate[date].map(function (l) {
+        return '<div class="card" style="padding:12px;"><div class="row-between"><div class="row-gap-2"><span class="dot" style="background:' + l.color + ';"></span><p style="font-weight:600;font-size:14px;">' + esc(l.peptideName) + '</p></div>'
+          + '<p class="mono muted" style="font-size:12px;">' + new Date(l.timestamp).toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' }) + '</p></div>'
+          + '<div class="row-gap-3 muted" style="margin-top:6px;font-size:12px;"><span class="mono">' + (l.doseMg ? fmtMg(l.doseMg) + ' &middot; ' : '') + parseFloat(l.units.toFixed(1)) + 'u</span>'
+          + '<span class="row-gap-2" style="gap:4px;">' + icon('pin', 11) + ' ' + esc(l.site) + '</span>'
+          + (l.severity && l.severity !== 'None' ? '<span style="color:#C98A2C;font-weight:500;">' + l.severity + '</span>' : '')
+          + '</div>'
+          + (l.note ? '<p class="muted" style="font-size:13px;margin-top:6px;">' + esc(l.note) + '</p>' : '')
+          + '</div>';
+      }).join('') + '</div></div>';
+  }).join('') + '</div>';
+  return html;
+}
+
+function render() {
+  var derived = getDerivedPeptides();
+  var weightSeries = getWeightSeries();
+  var tabHtml = '';
+  if (STATE.tab === 'dashboard') tabHtml = renderDashboard(derived, weightSeries);
+  else if (STATE.tab === 'peptides') tabHtml = renderPeptides(derived);
+  else if (STATE.tab === 'wellness') tabHtml = renderWellness(weightSeries);
+  else if (STATE.tab === 'history') tabHtml = renderHistory();
+
+  var app = document.getElementById('app');
+  app.innerHTML = renderHeader()
+    + (STATE.saveError ? '<div class="save-error">Could not save your last change. Your browser storage may be full or blocked.</div>' : '')
+    + '<main class="main">' + tabHtml + '</main>'
+    + renderNav();
+
+  attachGlobalHandlers();
+  attachTabHandlers();
+  renderModal();
+}
+
+function openModal(type, peptideId) { STATE.modal = { type: type, peptideId: peptideId }; renderModal(); }
+function closeModal() { STATE.modal = null; renderModal(); }
+
+function renderModal() {
+  var root = document.getElementById('modal-root');
+  if (!STATE.modal) { root.innerHTML = ''; return; }
+  var type = STATE.modal.type;
+  var html = '';
+  if (type === 'addPeptide') html = modalAddPeptide();
+  else if (type === 'editPeptide') html = modalEditPeptide(STATE.modal.peptideId);
+  else if (type === 'reconstitute') html = modalReconstitute(STATE.modal.peptideId);
+  else if (type === 'updateDose') html = modalUpdateDose(STATE.modal.peptideId);
+  else if (type === 'logDose') html = modalLogDose(STATE.modal.peptideId);
+  else if (type === 'checkIn') html = modalCheckIn();
+  else if (type === 'deletePeptideConfirm') html = modalDeleteConfirm(STATE.modal.peptideId);
+  root.innerHTML = html;
+  attachModalHandlers(type);
+}
+
+function weekdayPickerHTML(idPrefix, selectedDays) {
+  selectedDays = selectedDays || [];
+  return '<div class="rating-row">' + WEEKDAY_LABELS.map(function (lbl, idx) {
+    var active = selectedDays.indexOf(idx) !== -1 ? ' active' : '';
+    return '<button type="button" class="rating-btn' + active + ' ' + idPrefix + '-day-btn" data-day="' + idx + '">' + lbl.slice(0, 2) + '</button>';
+  }).join('') + '</div>';
+}
+
+function modalAddPeptide() {
+  var body = field('Peptide name', '<input class="field-input" id="f-name" placeholder="e.g. Retatrutide">')
+    + '<div class="grid-2">'
+    + field('Vial amount (mg)', '<input class="field-input" id="f-vialmg" type="number" inputmode="decimal" placeholder="20">')
+    + field('BAC water added (mL)', '<input class="field-input" id="f-bacml" type="number" inputmode="decimal" placeholder="1">')
+    + '</div>'
+    + field('Know your dose as', '<div class="row-gap-2"><button type="button" class="btn-toggle active" id="f-mode-mg">mg / mcg</button><button type="button" class="btn-toggle" id="f-mode-units">Units</button></div>')
+    + '<div id="f-mg-wrap">' + field('Your dose', '<div class="row-gap-2"><input class="field-input" id="f-dose-amount" type="number" inputmode="decimal" placeholder="3.5"><select class="field-unit-select" id="f-dose-unit"><option value="mg">mg</option><option value="mcg">mcg</option></select></div>') + '</div>'
+    + '<div id="f-units-wrap" style="display:none;">' + field('Units on your syringe', '<input class="field-input" id="f-units" type="number" inputmode="decimal" placeholder="10">') + '</div>'
+    + '<div id="f-dose-preview" class="banner-info" style="display:none;"></div>'
+    + field('Schedule type', '<div class="row-gap-2"><button type="button" class="btn-toggle active" id="f-sched-interval">Interval</button><button type="button" class="btn-toggle" id="f-sched-weekdays">Specific days</button></div>')
+    + '<div id="f-interval-wrap">' + field('Injection schedule', '<select class="field-input" id="f-interval">' + FREQUENCIES.map(function (f) { return '<option value="' + f.hours + '">' + f.label + '</option>'; }).join('') + '</select>') + '</div>'
+    + '<div id="f-weekdays-wrap" style="display:none;">' + field('Which days?', weekdayPickerHTML('f', [1, 3, 5])) + '</div>'
+    + '<button class="btn-primary" id="f-submit" style="margin-top:8px;" disabled>Save</button>';
+  return modalWrap('Add Peptide', body);
+}
+function attachAddPeptideHandlers() {
+  var nameEl = document.getElementById('f-name');
+  var vialEl = document.getElementById('f-vialmg');
+  var bacEl = document.getElementById('f-bacml');
+  var doseAmtEl = document.getElementById('f-dose-amount');
+  var doseUnitEl = document.getElementById('f-dose-unit');
+  var unitsEl = document.getElementById('f-units');
+  var modeMgBtn = document.getElementById('f-mode-mg');
+  var modeUnitsBtn = document.getElementById('f-mode-units');
+  var mgWrap = document.getElementById('f-mg-wrap');
+  var unitsWrap = document.getElementById('f-units-wrap');
+  var preview = document.getElementById('f-dose-preview');
+  var submitBtn = document.getElementById('f-submit');
+  var mode = 'mg';
+  var schedType = 'interval';
+  var schedIntervalBtn = document.getElementById('f-sched-interval');
+  var schedWeekdaysBtn = document.getElementById('f-sched-weekdays');
+  var intervalWrap = document.getElementById('f-interval-wrap');
+  var weekdaysWrap = document.getElementById('f-weekdays-wrap');
+
+  function selectedWeekdays() {
+    var days = [];
+    document.querySelectorAll('.f-day-btn.active').forEach(function (b) { days.push(parseInt(b.getAttribute('data-day'), 10)); });
+    return days;
+  }
+  document.querySelectorAll('.f-day-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () { btn.classList.toggle('active'); refresh(); });
+  });
+  schedIntervalBtn.addEventListener('click', function () {
+    schedType = 'interval'; schedIntervalBtn.classList.add('active'); schedWeekdaysBtn.classList.remove('active');
+    intervalWrap.style.display = 'block'; weekdaysWrap.style.display = 'none'; refresh();
+  });
+  schedWeekdaysBtn.addEventListener('click', function () {
+    schedType = 'weekdays'; schedWeekdaysBtn.classList.add('active'); schedIntervalBtn.classList.remove('active');
+    weekdaysWrap.style.display = 'block'; intervalWrap.style.display = 'none'; refresh();
+  });
+
+  function currentDoseMg() {
+    var vialMg = parseFloat(vialEl.value), bacMl = parseFloat(bacEl.value);
+    if (mode === 'units') {
+      var units = parseFloat(unitsEl.value);
+      if (isNaN(units) || !(vialMg > 0 && bacMl > 0)) return 0;
+      return (units / 100) * (vialMg / bacMl);
+    }
+    var amt = parseFloat(doseAmtEl.value);
+    if (isNaN(amt)) return 0;
+    return doseUnitEl.value === 'mcg' ? amt / 1000 : amt;
+  }
+  function refresh() {
+    var vialMg = parseFloat(vialEl.value), bacMl = parseFloat(bacEl.value);
+    var doseMg = currentDoseMg();
+    var scheduleValid = schedType === 'interval' || selectedWeekdays().length > 0;
+    var valid = nameEl.value.trim() && vialMg > 0 && bacMl > 0 && doseMg > 0 && scheduleValid;
+    submitBtn.disabled = !valid;
+    if (vialMg > 0 && bacMl > 0 && doseMg > 0) {
+      preview.style.display = 'block';
+      if (mode === 'units') {
+        preview.textContent = "That's " + fmtMg(doseMg) + " per dose.";
+      } else {
+        var u = mgToUnits(doseMg, vialMg, bacMl);
+        preview.textContent = "That's " + parseFloat(u.toFixed(1)) + " units on a 100-unit syringe.";
+      }
+    } else { preview.style.display = 'none'; }
+  }
+  modeMgBtn.addEventListener('click', function () {
+    mode = 'mg'; modeMgBtn.classList.add('active'); modeUnitsBtn.classList.remove('active');
+    mgWrap.style.display = 'block'; unitsWrap.style.display = 'none'; refresh();
+  });
+  modeUnitsBtn.addEventListener('click', function () {
+    mode = 'units'; modeUnitsBtn.classList.add('active'); modeMgBtn.classList.remove('active');
+    unitsWrap.style.display = 'block'; mgWrap.style.display = 'none'; refresh();
+  });
+  [nameEl, vialEl, bacEl, doseAmtEl, doseUnitEl, unitsEl].forEach(function (el) { el.addEventListener('input', refresh); });
+  submitBtn.addEventListener('click', function () {
+    var vialMg = parseFloat(vialEl.value), bacMl = parseFloat(bacEl.value);
+    var doseMg = currentDoseMg();
+    var intervalHours = parseInt(document.getElementById('f-interval').value, 10);
+    var color = PALETTE[STATE.peptides.length % PALETTE.length];
+    STATE.peptides.push({
+      id: uid(), name: nameEl.value.trim(), color: color, vialMg: vialMg, bacMl: bacMl,
+      scheduleType: schedType, intervalHours: intervalHours, weekdays: schedType === 'weekdays' ? selectedWeekdays() : [],
+      totalVolumeMl: bacMl, remainingMl: bacMl, lastDoseAt: null, lastSite: null,
+      doseHistory: [{ id: uid(), doseMg: doseMg, effectiveAt: Date.now() }]
+    });
+    saveState(); closeModal(); render();
+  });
+}
+
+function modalEditPeptide(id) {
+  var p = STATE.peptides.find(function (x) { return x.id === id; });
+  if (!p) return '';
+  var schedType = p.scheduleType || 'interval';
+  var body = field('Peptide name', '<input class="field-input" id="f-name" value="' + esc(p.name) + '">')
+    + field('Schedule type', '<div class="row-gap-2"><button type="button" class="btn-toggle ' + (schedType === 'interval' ? 'active' : '') + '" id="f-sched-interval">Interval</button><button type="button" class="btn-toggle ' + (schedType === 'weekdays' ? 'active' : '') + '" id="f-sched-weekdays">Specific days</button></div>')
+    + '<div id="f-interval-wrap" style="display:' + (schedType === 'interval' ? 'block' : 'none') + ';">' + field('Injection schedule', '<select class="field-input" id="f-interval">' + FREQUENCIES.map(function (f) { return '<option value="' + f.hours + '" ' + (f.hours === p.intervalHours ? 'selected' : '') + '>' + f.label + '</option>'; }).join('') + '</select>') + '</div>'
+    + '<div id="f-weekdays-wrap" style="display:' + (schedType === 'weekdays' ? 'block' : 'none') + ';">' + field('Which days?', weekdayPickerHTML('f', p.weekdays || [1, 3, 5])) + '</div>'
+    + '<p class="muted" style="font-size:12px;margin-bottom:12px;">To change your dose amount, use "Titrate" instead — it keeps a history of when each dose started.</p>'
+    + '<button class="btn-primary" id="f-submit">Save</button>';
+  return modalWrap('Edit Peptide', body);
+}
+function attachEditPeptideHandlers(id) {
+  var schedType = 'interval';
+  var p0 = STATE.peptides.find(function (x) { return x.id === id; });
+  if (p0) schedType = p0.scheduleType || 'interval';
+  var schedIntervalBtn = document.getElementById('f-sched-interval');
+  var schedWeekdaysBtn = document.getElementById('f-sched-weekdays');
+  var intervalWrap = document.getElementById('f-interval-wrap');
+  var weekdaysWrap = document.getElementById('f-weekdays-wrap');
+  document.querySelectorAll('.f-day-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () { btn.classList.toggle('active'); });
+  });
+  schedIntervalBtn.addEventListener('click', function () {
+    schedType = 'interval'; schedIntervalBtn.classList.add('active'); schedWeekdaysBtn.classList.remove('active');
+    intervalWrap.style.display = 'block'; weekdaysWrap.style.display = 'none';
+  });
+  schedWeekdaysBtn.addEventListener('click', function () {
+    schedType = 'weekdays'; schedWeekdaysBtn.classList.add('active'); schedIntervalBtn.classList.remove('active');
+    weekdaysWrap.style.display = 'block'; intervalWrap.style.display = 'none';
+  });
+  document.getElementById('f-submit').addEventListener('click', function () {
+    var p = STATE.peptides.find(function (x) { return x.id === id; });
+    if (!p) return;
+    p.name = document.getElementById('f-name').value.trim() || p.name;
+    p.scheduleType = schedType;
+    if (schedType === 'weekdays') {
+      var days = [];
+      document.querySelectorAll('.f-day-btn.active').forEach(function (b) { days.push(parseInt(b.getAttribute('data-day'), 10)); });
+      p.weekdays = days.length ? days : [1, 3, 5];
+    } else {
+      p.intervalHours = parseInt(document.getElementById('f-interval').value, 10);
+    }
+    saveState(); closeModal(); render();
+  });
+}
+
+function modalReconstitute(id) {
+  var p = STATE.peptides.find(function (x) { return x.id === id; });
+  if (!p) return '';
+  var body = '<p class="muted" style="font-size:13px;margin-bottom:12px;">This resets your inventory for ' + esc(p.name) + ' to a full vial.</p>'
+    + '<div class="grid-2">'
+    + field('Vial amount (mg)', '<input class="field-input" id="f-vialmg" type="number" inputmode="decimal" value="' + p.vialMg + '">')
+    + field('BAC water added (mL)', '<input class="field-input" id="f-bacml" type="number" inputmode="decimal" value="' + p.bacMl + '">')
+    + '</div>'
+    + '<button class="btn-primary" id="f-submit" style="margin-top:8px;">Start new vial</button>';
+  return modalWrap('New Vial — ' + esc(p.name), body);
+}
+function attachReconstituteHandlers(id) {
+  document.getElementById('f-submit').addEventListener('click', function () {
+    var p = STATE.peptides.find(function (x) { return x.id === id; });
+    if (!p) return;
+    var vialMg = parseFloat(document.getElementById('f-vialmg').value);
+    var bacMl = parseFloat(document.getElementById('f-bacml').value);
+    if (!(vialMg > 0 && bacMl > 0)) return;
+    p.vialMg = vialMg; p.bacMl = bacMl; p.totalVolumeMl = bacMl; p.remainingMl = bacMl;
+    saveState(); closeModal(); render();
+  });
+}
+
+function modalUpdateDose(id) {
+  var now = Date.now();
+  var p = STATE.peptides.find(function (x) { return x.id === id; });
+  if (!p) return '';
+  var dp = derivePeptide(p, now);
+  var isMcg = dp.currentDoseMg < 1;
+  var body = '<p class="muted" style="font-size:13px;margin-bottom:12px;">Current dose: <strong style="color:#16292B;">' + fmtMg(dp.currentDoseMg) + '</strong> (' + parseFloat(dp.units.toFixed(1)) + 'u)</p>'
+    + field('New dose', '<div class="row-gap-2"><input class="field-input" id="f-dose-amount" type="number" inputmode="decimal" value="' + (isMcg ? Math.round(dp.currentDoseMg * 1000) : dp.currentDoseMg) + '"><select class="field-unit-select" id="f-dose-unit"><option value="mg" ' + (!isMcg ? 'selected' : '') + '>mg</option><option value="mcg" ' + (isMcg ? 'selected' : '') + '>mcg</option></select></div>')
+    + '<div id="f-dose-preview" class="banner-titrate-box" style="color:#5B7FBD;font-size:13px;font-weight:500;"></div>'
+    + field('Starting when?', '<div class="row-gap-2"><button type="button" class="btn-toggle active" id="f-when-today">Today</button><button type="button" class="btn-toggle" id="f-when-custom">Future date</button></div>')
+    + '<div id="f-custom-date-wrap" style="display:none;">' + field('Effective date', '<input class="field-input" type="date" id="f-effective-date" value="' + new Date().toISOString().slice(0, 10) + '">') + '</div>'
+    + '<button class="btn-primary" id="f-submit" style="margin-top:8px;">Update dose now</button>';
+  return modalWrap('Titrate — ' + esc(p.name), body);
+}
+function attachUpdateDoseHandlers(id) {
+  var p = STATE.peptides.find(function (x) { return x.id === id; });
+  if (!p) return;
+  var doseAmtEl = document.getElementById('f-dose-amount');
+  var doseUnitEl = document.getElementById('f-dose-unit');
+  var preview = document.getElementById('f-dose-preview');
+  var todayBtn = document.getElementById('f-when-today');
+  var customBtn = document.getElementById('f-when-custom');
+  var customWrap = document.getElementById('f-custom-date-wrap');
+  var submitBtn = document.getElementById('f-submit');
+  var when = 'today';
+  function doseMg() {
+    var amt = parseFloat(doseAmtEl.value);
+    if (isNaN(amt)) return 0;
+    return doseUnitEl.value === 'mcg' ? amt / 1000 : amt;
+  }
+  function refresh() {
+    var dm = doseMg();
+    if (p.vialMg > 0 && p.bacMl > 0 && dm > 0) {
+      var u = mgToUnits(dm, p.vialMg, p.bacMl);
+      preview.textContent = "That's " + parseFloat(u.toFixed(1)) + " units from your current vial.";
+    } else preview.textContent = '';
+  }
+  [doseAmtEl, doseUnitEl].forEach(function (el) { el.addEventListener('input', refresh); });
+  refresh();
+  todayBtn.addEventListener('click', function () { when = 'today'; todayBtn.classList.add('active'); customBtn.classList.remove('active'); customWrap.style.display = 'none'; submitBtn.textContent = 'Update dose now'; });
+  customBtn.addEventListener('click', function () { when = 'custom'; customBtn.classList.add('active'); todayBtn.classList.remove('active'); customWrap.style.display = 'block'; submitBtn.textContent = 'Schedule dose change'; });
+  submitBtn.addEventListener('click', function () {
+    var dm = doseMg();
+    if (!(dm > 0)) return;
+    var effectiveAt = when === 'today' ? Date.now() : new Date(document.getElementById('f-effective-date').value + 'T00:00:00').getTime();
+    p.doseHistory.push({ id: uid(), doseMg: dm, effectiveAt: effectiveAt });
+    p.doseHistory.sort(function (a, b) { return a.effectiveAt - b.effectiveAt; });
+    saveState(); closeModal(); render();
+  });
+}
+
+function modalLogDose(id) {
+  var now = Date.now();
+  var p = STATE.peptides.find(function (x) { return x.id === id; });
+  if (!p) return '';
+  var dp = derivePeptide(p, now);
+  var site = nextSite(p.lastSite);
+  var isMcg = dp.currentDoseMg < 1;
+  var body = '<div class="banner-info">Current dose is <strong>' + fmtMg(dp.currentDoseMg) + '</strong> — draw to <strong>' + parseFloat(dp.units.toFixed(1)) + ' units</strong> on your syringe.</div>'
+    + field('When did you take this?', '<div class="row-gap-2"><button type="button" class="btn-toggle active" id="f-when-now">Just now</button><button type="button" class="btn-toggle" id="f-when-custom">Earlier / different day</button></div>')
+    + '<div id="f-custom-time-wrap" style="display:none;">' + field('Date & time', '<input class="field-input" type="datetime-local" id="f-custom-time" value="' + fmtDatetimeLocal(new Date()) + '">') + '</div>'
+    + field('Log dose as', '<div class="row-gap-2"><button type="button" class="btn-toggle active" id="f-mode-units">Units</button><button type="button" class="btn-toggle" id="f-mode-mg">mg / mcg</button></div>')
+    + '<div id="f-units-wrap">' + field('Units drawn (adjust if needed)', '<input class="field-input" id="f-units" type="number" inputmode="decimal" value="' + parseFloat(dp.units.toFixed(1)) + '">') + '</div>'
+    + '<div id="f-mg-wrap" style="display:none;">' + field('Dose amount', '<div class="row-gap-2"><input class="field-input" id="f-dose-amount" type="number" inputmode="decimal" value="' + (isMcg ? Math.round(dp.currentDoseMg * 1000) : dp.currentDoseMg) + '"><select class="field-unit-select" id="f-dose-unit"><option value="mg" ' + (!isMcg ? 'selected' : '') + '>mg</option><option value="mcg" ' + (isMcg ? 'selected' : '') + '>mcg</option></select></div>') + '</div>'
+    + '<div id="f-dose-preview" class="banner-info"></div>'
+    + field('Injection site', '<select class="field-input" id="f-site">' + SITES.map(function (s) { return '<option value="' + s + '" ' + (s === site ? 'selected' : '') + '>' + s + '</option>'; }).join('') + '</select>')
+    + field('Side effects / symptoms', '<select class="field-input" id="f-severity">' + ['None', 'Mild', 'Moderate', 'Severe'].map(function (s) { return '<option value="' + s + '">' + s + '</option>'; }).join('') + '</select>')
+    + field('Notes (optional)', '<textarea class="field-input" id="f-note" rows="2" placeholder="Redness, nausea, injection site pain..."></textarea>')
+    + '<button class="btn-primary" id="f-submit" style="margin-top:8px;">' + icon('check', 16) + ' Confirm dose logged</button>';
+  return modalWrap('Log Dose — ' + esc(p.name), body);
+}
+function attachLogDoseHandlers(id) {
+  var p = STATE.peptides.find(function (x) { return x.id === id; });
+  if (!p) return;
+  var nowBtn = document.getElementById('f-when-now');
+  var customBtn = document.getElementById('f-when-custom');
+  var customWrap = document.getElementById('f-custom-time-wrap');
+  var when = 'now';
+  nowBtn.addEventListener('click', function () { when = 'now'; nowBtn.classList.add('active'); customBtn.classList.remove('active'); customWrap.style.display = 'none'; });
+  customBtn.addEventListener('click', function () { when = 'custom'; customBtn.classList.add('active'); nowBtn.classList.remove('active'); customWrap.style.display = 'block'; });
+
+  var modeUnitsBtn = document.getElementById('f-mode-units');
+  var modeMgBtn = document.getElementById('f-mode-mg');
+  var unitsWrap = document.getElementById('f-units-wrap');
+  var mgWrap = document.getElementById('f-mg-wrap');
+  var preview = document.getElementById('f-dose-preview');
+  var unitsEl = document.getElementById('f-units');
+  var doseAmtEl = document.getElementById('f-dose-amount');
+  var doseUnitEl = document.getElementById('f-dose-unit');
+  var mode = 'units';
+
+  function currentUnits() {
+    if (mode === 'units') return parseFloat(unitsEl.value);
+    var amt = parseFloat(doseAmtEl.value);
+    if (isNaN(amt)) return NaN;
+    var doseMg = doseUnitEl.value === 'mcg' ? amt / 1000 : amt;
+    return mgToUnits(doseMg, p.vialMg, p.bacMl);
+  }
+  function currentDoseMgFromInputs() {
+    if (mode === 'mg') {
+      var amt = parseFloat(doseAmtEl.value);
+      if (isNaN(amt)) return NaN;
+      return doseUnitEl.value === 'mcg' ? amt / 1000 : amt;
+    }
+    var units = parseFloat(unitsEl.value);
+    if (isNaN(units) || !(p.vialMg && p.bacMl)) return NaN;
+    return (units / 100) * (p.vialMg / p.bacMl);
+  }
+  function refreshPreview() {
+    var u = currentUnits();
+    var dm = currentDoseMgFromInputs();
+    if (mode === 'units') {
+      preview.textContent = !isNaN(dm) ? '≈ ' + fmtMg(dm) : '';
+    } else {
+      preview.textContent = !isNaN(u) ? "That's " + parseFloat(u.toFixed(1)) + ' units on your syringe.' : '';
+    }
+  }
+  modeUnitsBtn.addEventListener('click', function () {
+    mode = 'units'; modeUnitsBtn.classList.add('active'); modeMgBtn.classList.remove('active');
+    unitsWrap.style.display = 'block'; mgWrap.style.display = 'none'; refreshPreview();
+  });
+  modeMgBtn.addEventListener('click', function () {
+    mode = 'mg'; modeMgBtn.classList.add('active'); modeUnitsBtn.classList.remove('active');
+    unitsWrap.style.display = 'none'; mgWrap.style.display = 'block'; refreshPreview();
+  });
+  unitsEl.addEventListener('input', refreshPreview);
+  doseAmtEl.addEventListener('input', refreshPreview);
+  doseUnitEl.addEventListener('input', refreshPreview);
+  refreshPreview();
+
+  document.getElementById('f-submit').addEventListener('click', function () {
+    var units = currentUnits();
+    if (!(units > 0)) return;
+    var timestamp = when === 'now' ? Date.now() : new Date(document.getElementById('f-custom-time').value).getTime();
+    var site = document.getElementById('f-site').value;
+    var severity = document.getElementById('f-severity').value;
+    var note = document.getElementById('f-note').value.trim();
+    var impliedDoseMg = (p.vialMg && p.bacMl) ? (units / 100) * (p.vialMg / p.bacMl) : null;
+    STATE.logs.unshift({ id: uid(), peptideId: p.id, peptideName: p.name, color: p.color, timestamp: timestamp, units: units, doseMg: impliedDoseMg, site: site, severity: severity, note: note });
+    p.lastDoseAt = timestamp; p.lastSite = site;
+    p.remainingMl = Math.max(0, (p.remainingMl || 0) - units / 100);
+    saveState(); closeModal(); render();
+  });
+}
+
+function ratingSelectorHTML(label, name) {
+  var btns = '';
+  for (var n = 1; n <= 5; n++) { btns += '<button type="button" class="rating-btn" data-rating="' + name + '" data-value="' + n + '">' + n + '</button>'; }
+  return field(label, '<div class="rating-row" data-rating-group="' + name + '">' + btns + '</div><input type="hidden" id="' + name + '-value">');
+}
+
+function modalCheckIn() {
+  var derived = getDerivedPeptides();
+  var body = field('When?', '<div class="row-gap-2"><button type="button" class="btn-toggle active" id="ci-when-now">Just now</button><button type="button" class="btn-toggle" id="ci-when-custom">Earlier / different day</button></div>')
+    + '<div id="ci-custom-time-wrap" style="display:none;">' + field('Date & time', '<input class="field-input" type="datetime-local" id="ci-custom-time" value="' + fmtDatetimeLocal(new Date()) + '">') + '</div>';
+
+  if (derived.length) {
+    body += '<p class="field-label" style="margin-top:4px;">' + icon('syringe', 12) + ' Doses taken</p>';
+    body += derived.map(function (p) {
+      var site = nextSite(p.lastSite);
+      var isMcg = p.currentDoseMg < 1;
+      return '<div class="card" style="padding:12px;margin-bottom:8px;" data-peptide-row="' + p.id + '" data-taken="false">'
+        + '<div class="row-between ci-toggle-dose" style="cursor:pointer;">'
+        + '<span class="row-gap-2"><span class="dot" style="background:' + p.color + ';"></span><span style="font-weight:600;font-size:14px;">' + esc(p.name) + '</span><span class="muted mono" style="font-size:12px;">' + parseFloat(p.units.toFixed(1)) + 'u</span></span>'
+        + '<span class="btn-toggle ci-taken-label" style="padding:4px 12px;">Log</span>'
+        + '</div>'
+        + '<div class="ci-dose-fields" style="display:none;margin-top:10px;">'
+        + field('Log dose as', '<div class="row-gap-2"><button type="button" class="btn-toggle active ci-mode-units">Units</button><button type="button" class="btn-toggle ci-mode-mg">mg / mcg</button></div>')
+        + '<div class="ci-units-wrap">' + field('Units drawn', '<input class="field-input ci-units" type="number" inputmode="decimal" value="' + parseFloat(p.units.toFixed(1)) + '">') + '</div>'
+        + '<div class="ci-mg-wrap" style="display:none;">' + field('Dose amount', '<div class="row-gap-2"><input class="field-input ci-dose-amount" type="number" inputmode="decimal" value="' + (isMcg ? Math.round(p.currentDoseMg * 1000) : p.currentDoseMg) + '"><select class="field-unit-select ci-dose-unit"><option value="mg" ' + (!isMcg ? 'selected' : '') + '>mg</option><option value="mcg" ' + (isMcg ? 'selected' : '') + '>mcg</option></select></div>') + '</div>'
+        + '<div class="ci-dose-preview banner-info"></div>'
+        + field('Site', '<select class="field-input ci-site">' + SITES.map(function (s) { return '<option value="' + s + '" ' + (s === site ? 'selected' : '') + '>' + s + '</option>'; }).join('') + '</select>')
+        + field('Side effects / symptoms', '<select class="field-input ci-severity">' + ['None', 'Mild', 'Moderate', 'Severe'].map(function (s) { return '<option value="' + s + '">' + s + '</option>'; }).join('') + '</select>')
+        + '</div></div>';
+    }).join('');
+  }
+
+  body += '<p class="field-label" style="margin-top:12px;">Weight</p>'
+    + field('Weight (lb)', '<input class="field-input" id="ci-weight" type="number" inputmode="decimal" placeholder="182.4">')
+    + '<p class="field-label" style="margin-top:4px;">' + icon('ruler', 12) + ' Measurements (in) — optional</p>'
+    + '<div class="grid-2">'
+    + field('Waist', '<input class="field-input" id="ci-waist" type="number" inputmode="decimal">')
+    + field('Hips', '<input class="field-input" id="ci-hips" type="number" inputmode="decimal">')
+    + field('Chest', '<input class="field-input" id="ci-chest" type="number" inputmode="decimal">')
+    + field('Thigh', '<input class="field-input" id="ci-thigh" type="number" inputmode="decimal">')
+    + '</div>'
+    + field('Arm', '<input class="field-input" id="ci-arm" type="number" inputmode="decimal">')
+    + ratingSelectorHTML('Sleep quality (1-5)', 'ci-sleep')
+    + ratingSelectorHTML('Energy level (1-5)', 'ci-energy')
+    + ratingSelectorHTML('Hunger / appetite (1-5)', 'ci-hunger')
+    + field('General notes (optional)', '<textarea class="field-input" id="ci-note" rows="2" placeholder="How you are feeling overall..."></textarea>')
+    + '<button class="btn-primary" id="ci-submit" style="margin-top:8px;">Save check-in</button>';
+
+  return modalWrap('Check-in', body);
+}
+function attachCheckInHandlers() {
+  var nowBtn = document.getElementById('ci-when-now');
+  var customBtn = document.getElementById('ci-when-custom');
+  var customWrap = document.getElementById('ci-custom-time-wrap');
+  var when = 'now';
+  nowBtn.addEventListener('click', function () { when = 'now'; nowBtn.classList.add('active'); customBtn.classList.remove('active'); customWrap.style.display = 'none'; });
+  customBtn.addEventListener('click', function () { when = 'custom'; customBtn.classList.add('active'); nowBtn.classList.remove('active'); customWrap.style.display = 'block'; });
+
+  document.querySelectorAll('.ci-toggle-dose').forEach(function (row) {
+    row.addEventListener('click', function () {
+      var card = row.closest('[data-peptide-row]');
+      var fields = card.querySelector('.ci-dose-fields');
+      var label = row.querySelector('.ci-taken-label');
+      var isOpen = fields.style.display !== 'none';
+      fields.style.display = isOpen ? 'none' : 'block';
+      card.dataset.taken = isOpen ? 'false' : 'true';
+      label.textContent = isOpen ? 'Log' : 'Taken';
+      label.style.background = isOpen ? '' : '#2F6E68';
+      label.style.color = isOpen ? '' : '#fff';
+      label.style.borderColor = isOpen ? '' : '#2F6E68';
+    });
+  });
+
+  document.querySelectorAll('[data-peptide-row]').forEach(function (card) {
+    var pid = card.getAttribute('data-peptide-row');
+    var p = STATE.peptides.find(function (x) { return x.id === pid; });
+    if (!p) return;
+    var modeUnitsBtn = card.querySelector('.ci-mode-units');
+    var modeMgBtn = card.querySelector('.ci-mode-mg');
+    var unitsWrap = card.querySelector('.ci-units-wrap');
+    var mgWrap = card.querySelector('.ci-mg-wrap');
+    var preview = card.querySelector('.ci-dose-preview');
+    var unitsEl = card.querySelector('.ci-units');
+    var doseAmtEl = card.querySelector('.ci-dose-amount');
+    var doseUnitEl = card.querySelector('.ci-dose-unit');
+    card.dataset.mode = 'units';
+
+    function currentUnitsForRow() {
+      if (card.dataset.mode === 'units') return parseFloat(unitsEl.value);
+      var amt = parseFloat(doseAmtEl.value);
+      if (isNaN(amt)) return NaN;
+      var doseMg = doseUnitEl.value === 'mcg' ? amt / 1000 : amt;
+      return mgToUnits(doseMg, p.vialMg, p.bacMl);
+    }
+    function currentDoseMgForRow() {
+      if (card.dataset.mode === 'mg') {
+        var amt = parseFloat(doseAmtEl.value);
+        if (isNaN(amt)) return NaN;
+        return doseUnitEl.value === 'mcg' ? amt / 1000 : amt;
+      }
+      var units = parseFloat(unitsEl.value);
+      if (isNaN(units) || !(p.vialMg && p.bacMl)) return NaN;
+      return (units / 100) * (p.vialMg / p.bacMl);
+    }
+    function refreshRowPreview() {
+      if (card.dataset.mode === 'units') {
+        var dm = currentDoseMgForRow();
+        preview.textContent = !isNaN(dm) ? '≈ ' + fmtMg(dm) : '';
+      } else {
+        var u = currentUnitsForRow();
+        preview.textContent = !isNaN(u) ? "That's " + parseFloat(u.toFixed(1)) + ' units.' : '';
+      }
+    }
+    modeUnitsBtn.addEventListener('click', function () {
+      card.dataset.mode = 'units'; modeUnitsBtn.classList.add('active'); modeMgBtn.classList.remove('active');
+      unitsWrap.style.display = 'block'; mgWrap.style.display = 'none'; refreshRowPreview();
+    });
+    modeMgBtn.addEventListener('click', function () {
+      card.dataset.mode = 'mg'; modeMgBtn.classList.add('active'); modeUnitsBtn.classList.remove('active');
+      unitsWrap.style.display = 'none'; mgWrap.style.display = 'block'; refreshRowPreview();
+    });
+    unitsEl.addEventListener('input', refreshRowPreview);
+    doseAmtEl.addEventListener('input', refreshRowPreview);
+    doseUnitEl.addEventListener('input', refreshRowPreview);
+    refreshRowPreview();
+    card._getUnits = currentUnitsForRow;
+  });
+
+  document.querySelectorAll('[data-rating-group]').forEach(function (group) {
+    var name = group.getAttribute('data-rating-group');
+    var hidden = document.getElementById(name + '-value');
+    group.querySelectorAll('.rating-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var val = btn.getAttribute('data-value');
+        var already = btn.classList.contains('active');
+        group.querySelectorAll('.rating-btn').forEach(function (b) { b.classList.remove('active'); });
+        if (!already) { btn.classList.add('active'); hidden.value = val; } else { hidden.value = ''; }
+      });
+    });
+  });
+
+  document.getElementById('ci-submit').addEventListener('click', function () {
+    var timestamp = when === 'now' ? Date.now() : new Date(document.getElementById('ci-custom-time').value).getTime();
+    var anyDose = false;
+    document.querySelectorAll('[data-peptide-row]').forEach(function (card) {
+      if (card.dataset.taken === 'true') {
+        anyDose = true;
+        var id = card.getAttribute('data-peptide-row');
+        var p = STATE.peptides.find(function (x) { return x.id === id; });
+        if (!p) return;
+        var units = card._getUnits ? card._getUnits() : parseFloat(card.querySelector('.ci-units').value);
+        var site = card.querySelector('.ci-site').value;
+        var severity = card.querySelector('.ci-severity').value;
+        var impliedDoseMg = (p.vialMg && p.bacMl) ? (units / 100) * (p.vialMg / p.bacMl) : null;
+        STATE.logs.unshift({ id: uid(), peptideId: p.id, peptideName: p.name, color: p.color, timestamp: timestamp, units: units, doseMg: impliedDoseMg, site: site, severity: severity, note: '' });
+        p.lastDoseAt = timestamp; p.lastSite = site;
+        p.remainingMl = Math.max(0, (p.remainingMl || 0) - units / 100);
+      }
+    });
+    var weightVal = parseFloat(document.getElementById('ci-weight').value);
+    var waist = parseFloat(document.getElementById('ci-waist').value);
+    var hips = parseFloat(document.getElementById('ci-hips').value);
+    var chest = parseFloat(document.getElementById('ci-chest').value);
+    var thigh = parseFloat(document.getElementById('ci-thigh').value);
+    var arm = parseFloat(document.getElementById('ci-arm').value);
+    var sleep = document.getElementById('ci-sleep-value').value;
+    var energy = document.getElementById('ci-energy-value').value;
+    var hunger = document.getElementById('ci-hunger-value').value;
+    var note = document.getElementById('ci-note').value.trim();
+    var hasWellness = !isNaN(weightVal) || !isNaN(waist) || !isNaN(hips) || !isNaN(chest) || !isNaN(thigh) || !isNaN(arm) || sleep || energy || hunger || note;
+    if (hasWellness) {
+      STATE.wellness.unshift({
+        id: uid(), timestamp: timestamp,
+        weightLb: !isNaN(weightVal) ? weightVal : null,
+        waist: !isNaN(waist) ? waist : null,
+        hips: !isNaN(hips) ? hips : null,
+        chest: !isNaN(chest) ? chest : null,
+        thigh: !isNaN(thigh) ? thigh : null,
+        arm: !isNaN(arm) ? arm : null,
+        sleep: sleep ? parseInt(sleep, 10) : null,
+        energy: energy ? parseInt(energy, 10) : null,
+        hunger: hunger ? parseInt(hunger, 10) : null,
+        note: note
+      });
+      STATE.wellness.sort(function (a, b) { return b.timestamp - a.timestamp; });
+    }
+    if (!anyDose && !hasWellness) { closeModal(); return; }
+    saveState(); closeModal(); render();
+  });
+}
+
+function modalDeleteConfirm(id) {
+  var p = STATE.peptides.find(function (x) { return x.id === id; });
+  if (!p) return '';
+  var body = '<p class="muted" style="font-size:14px;margin-bottom:16px;">Remove <strong style="color:#16292B;">' + esc(p.name) + '</strong>? Past log entries will be kept in your history.</p>'
+    + '<div class="row-gap-2"><button class="btn-outline flex-1" id="f-cancel">Cancel</button><button class="btn-danger flex-1" id="f-confirm">Remove</button></div>';
+  return modalWrap('Remove Peptide', body);
+}
+function attachDeleteConfirmHandlers(id) {
+  document.getElementById('f-cancel').addEventListener('click', closeModal);
+  document.getElementById('f-confirm').addEventListener('click', function () {
+    STATE.peptides = STATE.peptides.filter(function (p) { return p.id !== id; });
+    saveState(); closeModal(); render();
+  });
+}
+
+function attachModalHandlers(type) {
+  var overlay = document.getElementById('modal-overlay');
+  if (overlay) { overlay.addEventListener('click', function (e) { if (e.target === overlay) closeModal(); }); }
+  var closeBtn = document.getElementById('modal-close');
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+
+  var id = STATE.modal && STATE.modal.peptideId;
+  if (type === 'addPeptide') attachAddPeptideHandlers();
+  else if (type === 'editPeptide') attachEditPeptideHandlers(id);
+  else if (type === 'reconstitute') attachReconstituteHandlers(id);
+  else if (type === 'updateDose') attachUpdateDoseHandlers(id);
+  else if (type === 'logDose') attachLogDoseHandlers(id);
+  else if (type === 'checkIn') attachCheckInHandlers();
+  else if (type === 'deletePeptideConfirm') attachDeleteConfirmHandlers(id);
+}
+
+function exportData() {
+  var data = { peptides: STATE.peptides, logs: STATE.logs, wellness: STATE.wellness, exportedAt: new Date().toISOString() };
+  var blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url; a.download = 'vial-backup-' + new Date().toISOString().slice(0, 10) + '.json';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+function importData(e) {
+  var file = e.target.files[0];
+  if (!file) return;
+  var reader = new FileReader();
+  reader.onload = function (ev) {
+    try {
+      var data = JSON.parse(ev.target.result);
+      if (confirm('This will replace your current data with the backup file. Continue?')) {
+        STATE.peptides = data.peptides || [];
+        STATE.logs = data.logs || [];
+        STATE.wellness = data.wellness || [];
+        saveState(); render();
+      }
+    } catch (err) { alert("Could not read that file. Make sure it's a VIAL backup JSON file."); }
+  };
+  reader.readAsText(file);
+  e.target.value = '';
+}
+
+function attachGlobalHandlers() {
+  document.getElementById('btn-export').addEventListener('click', exportData);
+  document.getElementById('btn-import').addEventListener('click', function () { document.getElementById('import-file').click(); });
+  document.getElementById('import-file').addEventListener('change', importData);
+}
+function attachTabHandlers() {
+  document.querySelectorAll('.nav-item').forEach(function (btn) {
+    btn.addEventListener('click', function () { STATE.tab = btn.getAttribute('data-tab'); render(); });
+  });
+  var btnCheckin = document.getElementById('btn-checkin'); if (btnCheckin) btnCheckin.addEventListener('click', function () { openModal('checkIn'); });
+  var btnCheckinWellness = document.getElementById('btn-checkin-wellness'); if (btnCheckinWellness) btnCheckinWellness.addEventListener('click', function () { openModal('checkIn'); });
+  var btnAddEmpty = document.getElementById('btn-add-peptide-empty'); if (btnAddEmpty) btnAddEmpty.addEventListener('click', function () { openModal('addPeptide'); });
+  var btnAdd = document.getElementById('btn-add-peptide'); if (btnAdd) btnAdd.addEventListener('click', function () { openModal('addPeptide'); });
+  document.querySelectorAll('.btn-log-dose').forEach(function (b) { b.addEventListener('click', function () { openModal('logDose', b.getAttribute('data-id')); }); });
+  document.querySelectorAll('.btn-titrate').forEach(function (b) { b.addEventListener('click', function () { openModal('updateDose', b.getAttribute('data-id')); }); });
+  document.querySelectorAll('.btn-reconstitute').forEach(function (b) { b.addEventListener('click', function () { openModal('reconstitute', b.getAttribute('data-id')); }); });
+  document.querySelectorAll('.btn-edit-peptide').forEach(function (b) { b.addEventListener('click', function () { openModal('editPeptide', b.getAttribute('data-id')); }); });
+  document.querySelectorAll('.btn-delete-peptide').forEach(function (b) { b.addEventListener('click', function () { openModal('deletePeptideConfirm', b.getAttribute('data-id')); }); });
+  document.querySelectorAll('.btn-delete-wellness').forEach(function (b) { b.addEventListener('click', function () { STATE.wellness = STATE.wellness.filter(function (w) { return w.id !== b.getAttribute('data-id'); }); saveState(); render(); }); });
+  document.querySelectorAll('.btn-filter').forEach(function (b) { b.addEventListener('click', function () { STATE.historyFilter = b.getAttribute('data-filter'); render(); }); });
+}
+
+loadState();
+render();
+</script>
+</body>
+</html>
